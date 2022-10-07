@@ -18,7 +18,7 @@ class lattice:
         elif self.type == "square":
             a1 = np.array([1.0,0])
             a2 = np.array([0,1.0])
-        else: raise Exception(self.type + " is not implimented yet")
+        else: raise Exception(self.type + " is not implemented yet")
         return a1, a2
 
     def unit_cell(self):
@@ -63,10 +63,8 @@ class NN_bonds(lattice):
         tol = 0.001
         lat_const = 0
         bond = []
-        if self.type == "square" or self.type=="triangle" or \
-                self.type=="honeycomb":
-            lat_const = 1
-        if self.type == "kagome": lat_const=0.5
+        if self.type == "kagome": lat_const = 0.5
+        else: lat_const = 1.0
         coords = self.lattice_coords()
 
         for i in range(1,len(coords)+1):
