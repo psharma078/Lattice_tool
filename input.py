@@ -4,16 +4,16 @@ import matplotlib.pyplot as plt
 Lx = 5
 Ly = 3
 lat = "kagome"
-geometry=lt.lattice(lat,Lx,Ly)
-print(geometry.type)
-#print(geometry.translation_vecs())
-coords = geometry.lattice_coords()
+kagome=lt.lattice(lat,Lx,Ly)
+print(kagome.type)
+#print(kagome.translation_vecs())
+coords = kagome.lattice_coords()
 for j in coords:
     plt.scatter(coords[j][0], coords[j][1], c='k')
     plt.text(coords[j][0]+0.05,coords[j][1],str(j),fontsize=8)
 
-geometry = lt.NN_bonds(lat,Lx,Ly,"open")
-bonds = geometry.bonds()
+kagome = lt.NN_bonds(lat,Lx,Ly,"open")
+bonds = kagome.bonds()
 for bond in bonds:
     i = bond[0]
     j = bond[1]
@@ -21,5 +21,5 @@ for bond in bonds:
             [coords[i][1],coords[j][1]],lw=1.5,c='orange')
 plt.axis("equal")
 plt.axis("off")
-plt.savefig("geometry_lattice.png",dpi=400)
+plt.savefig("kagome_lattice.png",dpi=400)
 plt.show()
