@@ -3,4 +3,4 @@ Lattice tool for creating different geometry. This is useful for ITensor library
 
 Kagome:
 
-![ ](kagome_lattice.png)
+![ ](images/kagome_lattice.png)
