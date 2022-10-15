@@ -2,7 +2,7 @@
 Lattice tool for creating different geometry. 
 This is useful for solving lattice Hamiltonian and can be implemented with ITensor library as cylindrical boundary for 2D lattices are implimented using an argument called "yperiodic".  
 
-$C++$ version of lattice_tool for itensor $C++$ is included in the c++ folder.
+c++ version of lattice_tool for ITensor c++ library is included in the folder named c++.
 
 ### Inputs:
 
