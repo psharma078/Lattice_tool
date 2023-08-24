@@ -83,4 +83,40 @@ class NN_bonds(lattice):
                         d = self.distance(edge,coords[l])
                         if abs(d-lat_const) < tol:
                             bond.append([k,l])
+                            
+        if self.bc == "periodic":
+            a1,a2 = self.translation_vecs()
+            uc_atm = len(self.unit_cell())
+            for k in range(1,len(coords)+1):
+                if k%(uc_atm*self.ly) == 0:
+                    edge = coords[k] - self.ly*a2
+                    for l in range(1,k):
+                        d = self.distance(edge,coords[l])
+                        if abs(d-lat_const) < tol:
+                            bond.append([k,l])
+
+            N = uc_atm*self.lx*self.ly
+            for k in range(1, uc_atm*self.ly+1):
+                edge = coords[k] + self.lx*a1
+                for l in range(N-uc_atm*self.ly,N+1):
+                    d = self.distance(edge,coords[l])
+                    if abs(d-lat_const) < tol:
+                        bond.append([k,l])
+
+            #corners are also connected
+            k = 1
+            corner_edge =  coords[k] + self.lx*a1 + self.ly*a2
+            for l in range(N-self.ly,N+1):
+                d = self.distance(corner_edge,coords[l])
+                if  abs(d-lat_const) < tol:
+                    bond.append([k,l]) #this should not contribute in many cases
+
+            k = uc_atm*self.ly
+            corner_edge =  coords[k] + self.lx*a1 - self.ly*a2
+            for l in range(N-uc_atm*self.ly,N):
+                d = self.distance(corner_edge,coords[l])
+                if  abs(d-lat_const) < tol:
+                    bond.append([k,l])
+        
+        
         return bond
